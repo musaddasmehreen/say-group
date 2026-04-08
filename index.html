@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAY Group of Companies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:   { DEFAULT: '#0f2044', light: '#1a3360', dark: '#091530' },
+            emerald:{ DEFAULT: '#166534', light: '#16a34a', soft: '#dcfce7' },
+            orange: { DEFAULT: '#ea580c', light: '#fb923c', soft: '#fff7ed' },
+            blue:   { soft: '#eff6ff' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    html { font-family: 'Inter', system-ui, sans-serif; }
+    .nav-blur { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .hero-gradient {
+      background: linear-gradient(135deg, #0f2044 0%, #1a3360 40%, #0f2044 70%, #091530 100%);
+    }
+    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover:hover { transform: translateY(-6px); }
+    .mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+  <!-- ═══════════════════════ HEADER / NAV ═══════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="nav-blur bg-white/80 border-b border-slate-200/60 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+
+          <!-- Logo -->
+          <a href="#home" class="flex items-center gap-3 group">
+            <!-- SVG Logo -->
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SAY Group Logo">
+              <!-- Background circle -->
+              <circle cx="22" cy="22" r="22" fill="#0f2044"/>
+              <!-- Triangle / triad shape -->
+              <polygon points="22,6 38,36 6,36" fill="none" stroke="#e2e8f0" stroke-width="1.2" stroke-linejoin="round" opacity="0.25"/>
+              <!-- S node - left -->
+              <circle cx="10" cy="33" r="5" fill="#166534"/>
+              <text x="10" y="36.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">S</text>
+              <!-- A node - top -->
+              <circle cx="22" cy="8" r="5" fill="#0f2044" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="22" y="11.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">A</text>
+              <!-- Y node - right -->
+              <circle cx="34" cy="33" r="5" fill="#ea580c"/>
+              <text x="34" y="36.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">Y</text>
+              <!-- Connecting lines -->
+              <line x1="10" y1="33" x2="22" y2="8" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+              <line x1="22" y1="8" x2="34" y2="33" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+              <line x1="10" y1="33" x2="34" y2="33" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+            </svg>
+            <div>
+              <span class="text-xl font-black tracking-tight text-navy">SAY</span>
+              <span class="hidden sm:inline text-xl font-light tracking-tight text-slate-500"> Group</span>
+            </div>
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav class="hidden md:flex items-center gap-8">
+            <a href="#home"      class="text-sm font-medium text-slate-600 hover:text-navy transition-colors">Home</a>
+            <a href="#about"     class="text-sm font-medium text-slate-600 hover:text-navy transition-colors">About Us</a>
+            <a href="#companies" class="text-sm font-medium text-slate-600 hover:text-navy transition-colors">Our Companies</a>
+            <a href="#contact"   class="text-sm font-medium text-slate-600 hover:text-navy transition-colors">Contact</a>
+            <a href="#contact" class="ml-2 px-4 py-2 bg-navy text-white text-sm font-semibold rounded-lg hover:bg-navy-light transition-colors">Get in Touch</a>
+          </nav>
+
+          <!-- Mobile menu button -->
+          <button id="menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
+            <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0">
+          <nav class="flex flex-col gap-1 pb-4">
+            <a href="#home"      class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-700 rounded-lg hover:bg-slate-100 transition-colors">Home</a>
+            <a href="#about"     class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-700 rounded-lg hover:bg-slate-100 transition-colors">About Us</a>
+            <a href="#companies" class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-700 rounded-lg hover:bg-slate-100 transition-colors">Our Companies</a>
+            <a href="#contact"   class="mobile-link px-3 py-2.5 text-sm font-medium text-slate-700 rounded-lg hover:bg-slate-100 transition-colors">Contact</a>
+            <a href="#contact"   class="mt-2 px-4 py-2.5 bg-navy text-white text-sm font-semibold rounded-lg text-center hover:bg-navy-light transition-colors">Get in Touch</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ HERO SECTION ═══════════════════════ -->
+  <section id="home" class="hero-gradient min-h-screen flex items-center pt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-3xl">
+        <!-- Pill badge -->
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-semibold text-slate-300 uppercase tracking-widest mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-light inline-block"></span>
+          Pakistan · Global Impact
+        </span>
+
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-6">
+          Diversified<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Excellence.</span><br/>
+          Global Impact.
+        </h1>
+
+        <p class="text-lg sm:text-xl text-slate-300 font-light leading-relaxed max-w-2xl mb-10">
+          SAY Group of Companies represents a legacy of quality across surgical manufacturing,
+          global trading, and sports apparel — built on the combined vision of three brothers
+          united by purpose.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#companies" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-navy font-bold rounded-xl hover:bg-slate-100 transition-colors text-sm shadow-lg">
+            Explore Our Companies
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </a>
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors text-sm">
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="mt-20 grid grid-cols-3 gap-6 max-w-2xl">
+        <div class="text-center">
+          <div class="text-3xl font-black text-white">3</div>
+          <div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Companies</div>
+        </div>
+        <div class="text-center border-x border-white/10">
+          <div class="text-3xl font-black text-white">3</div>
+          <div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Industries</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-black text-white">1</div>
+          <div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Vision</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ABOUT US ═══════════════════════ -->
+  <section id="about" class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Text -->
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-navy/50 mb-3 block">About Us</span>
+          <h2 class="text-4xl sm:text-5xl font-black text-navy leading-tight mb-6">
+            Three Brothers.<br/>One Unified Vision.
+          </h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The SAY Group was born from a simple but powerful idea: that three brothers — <strong class="text-navy">Salman</strong>, <strong class="text-navy">Asad</strong>, and <strong class="text-navy">Yasir</strong> — could each build a world-class enterprise in their own domain, and together form a unified powerhouse of manufacturing and export.
+          </p>
+          <p class="text-slate-600 leading-relaxed mb-8">
+            From the precision of surgical instruments to the reach of global commodity trading and the energy of sports apparel, the SAY Group combines expertise across vastly different industries into a single, synergistic family brand rooted in Pakistan and serving the world.
+          </p>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="p-4 bg-blue-soft rounded-xl text-center">
+              <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mx-auto mb-2">
+                <span class="text-white font-bold text-sm">S</span>
+              </div>
+              <div class="text-xs font-semibold text-navy">Salman</div>
+              <div class="text-xs text-slate-500 mt-0.5">Medical</div>
+            </div>
+            <div class="p-4 bg-emerald-soft rounded-xl text-center">
+              <div class="w-10 h-10 bg-emerald rounded-lg flex items-center justify-center mx-auto mb-2">
+                <span class="text-white font-bold text-sm">A</span>
+              </div>
+              <div class="text-xs font-semibold text-emerald">Asad</div>
+              <div class="text-xs text-slate-500 mt-0.5">Trading</div>
+            </div>
+            <div class="p-4 bg-orange-soft rounded-xl text-center">
+              <div class="w-10 h-10 bg-orange rounded-lg flex items-center justify-center mx-auto mb-2">
+                <span class="text-white font-bold text-sm">Y</span>
+              </div>
+              <div class="text-xs font-semibold text-orange">Yasir</div>
+              <div class="text-xs text-slate-500 mt-0.5">Sports</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual card -->
+        <div class="relative">
+          <div class="bg-white rounded-2xl shadow-xl p-10 border border-slate-100">
+            <!-- Large SVG Logo centered -->
+            <div class="flex justify-center mb-8">
+              <svg width="120" height="120" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="22" fill="#0f2044"/>
+                <polygon points="22,6 38,36 6,36" fill="none" stroke="#e2e8f0" stroke-width="1.2" stroke-linejoin="round" opacity="0.25"/>
+                <circle cx="10" cy="33" r="5" fill="#166534"/>
+                <text x="10" y="36.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">S</text>
+                <circle cx="22" cy="8" r="5" fill="#0f2044" stroke="#60a5fa" stroke-width="1.5"/>
+                <text x="22" y="11.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">A</text>
+                <circle cx="34" cy="33" r="5" fill="#ea580c"/>
+                <text x="34" y="36.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">Y</text>
+                <line x1="10" y1="33" x2="22" y2="8" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+                <line x1="22" y1="8" x2="34" y2="33" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+                <line x1="10" y1="33" x2="34" y2="33" stroke="#94a3b8" stroke-width="1" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="text-center">
+              <h3 class="text-3xl font-black text-navy tracking-tight">SAY Group</h3>
+              <p class="text-slate-500 text-sm mt-1">of Companies</p>
+              <div class="mt-6 pt-6 border-t border-slate-100 grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <div class="w-3 h-3 rounded-full bg-navy mx-auto mb-1.5"></div>
+                  <div class="text-xs text-slate-500">Medical</div>
+                </div>
+                <div>
+                  <div class="w-3 h-3 rounded-full bg-emerald mx-auto mb-1.5"></div>
+                  <div class="text-xs text-slate-500">Trading</div>
+                </div>
+                <div>
+                  <div class="w-3 h-3 rounded-full bg-orange mx-auto mb-1.5"></div>
+                  <div class="text-xs text-slate-500">Sports</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Decorative blobs -->
+          <div class="absolute -top-4 -right-4 w-20 h-20 bg-navy/10 rounded-full blur-xl -z-10"></div>
+          <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-emerald/10 rounded-full blur-xl -z-10"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ OUR COMPANIES ═══════════════════════ -->
+  <section id="companies" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-navy/50 mb-3 block">Our Portfolio</span>
+        <h2 class="text-4xl sm:text-5xl font-black text-navy leading-tight mb-4">Our Companies</h2>
+        <p class="text-slate-500 text-lg">Three distinct enterprises, one shared commitment to excellence and quality.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- ── Card 1: THE SURGICALS ── -->
+        <div class="card-hover group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl overflow-hidden">
+          <!-- Top accent bar -->
+          <div class="h-1.5 w-full bg-gradient-to-r from-blue-600 to-blue-400"></div>
+          <div class="p-8">
+            <!-- Icon -->
+            <div class="w-14 h-14 bg-blue-soft rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-7 h-7 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+
+            <span class="inline-block px-2.5 py-0.5 bg-blue-soft text-blue-700 text-xs font-semibold rounded-full uppercase tracking-wide mb-3">Medical</span>
+            <h3 class="text-2xl font-black text-navy mb-1">The Surgicals</h3>
+            <p class="text-sm text-slate-400 font-medium mb-4">Surgical &amp; Dental Manufacturing</p>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              Precision-engineered surgical and dental instruments manufactured to the highest international standards. Serving healthcare professionals and institutions worldwide with uncompromising quality and reliability.
+            </p>
+
+            <div class="pt-5 border-t border-slate-100">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-navy rounded-full flex items-center justify-center flex-shrink-0">
+                  <span class="text-white text-xs font-bold">SA</span>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Director</div>
+                  <div class="text-sm font-semibold text-navy">Syed Salman Abbas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 2: YAZMA INTERNATIONAL ── -->
+        <div class="card-hover group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl overflow-hidden">
+          <div class="h-1.5 w-full bg-gradient-to-r from-emerald-600 to-green-400"></div>
+          <div class="p-8">
+            <div class="w-14 h-14 bg-emerald-soft rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-7 h-7 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+
+            <span class="inline-block px-2.5 py-0.5 bg-emerald-soft text-emerald text-xs font-semibold rounded-full uppercase tracking-wide mb-3">Export &amp; Trade</span>
+            <h3 class="text-2xl font-black text-navy mb-1">Yazma International</h3>
+            <p class="text-sm text-slate-400 font-medium mb-4">Import / Export &amp; Manufacturing</p>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              A global trading house specialising in Pakistani rice export, premium leather goods, and tote bag manufacturing. Connecting Pakistan's agricultural and artisan excellence to international markets.
+            </p>
+
+            <div class="pt-5 border-t border-slate-100">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-emerald rounded-full flex items-center justify-center flex-shrink-0">
+                  <span class="text-white text-xs font-bold">AA</span>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Director</div>
+                  <div class="text-sm font-semibold text-navy">Syed Asad Abbas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Card 3: SMYZA INTERNATIONAL ── -->
+        <div class="card-hover group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl overflow-hidden">
+          <div class="h-1.5 w-full bg-gradient-to-r from-orange-500 to-orange-300"></div>
+          <div class="p-8">
+            <div class="w-14 h-14 bg-orange-soft rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <svg class="w-7 h-7 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+
+            <span class="inline-block px-2.5 py-0.5 bg-orange-soft text-orange text-xs font-semibold rounded-full uppercase tracking-wide mb-3">Sports &amp; Apparel</span>
+            <h3 class="text-2xl font-black text-navy mb-1">SMYZA International</h3>
+            <p class="text-sm text-slate-400 font-medium mb-4">Sports Apparel &amp; Manufacturing</p>
+            <p class="text-slate-600 text-sm leading-relaxed mb-6">
+              High-performance sports apparel and athletic wear designed for champions. SMYZA International combines cutting-edge design with durable manufacturing, supplying sports brands and athletes globally.
+            </p>
+
+            <div class="pt-5 border-t border-slate-100">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-orange rounded-full flex items-center justify-center flex-shrink-0">
+                  <span class="text-white text-xs font-bold">YA</span>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-400">Director</div>
+                  <div class="text-sm font-semibold text-navy">Syed Yasir Abbas</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ VALUES / WHY US ═══════════════════════ -->
+  <section class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-navy/50 mb-3 block">Why SAY Group</span>
+        <h2 class="text-4xl font-black text-navy">Built on Principles</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-xl p-6 border border-slate-100 shadow-sm text-center">
+          <div class="w-12 h-12 bg-navy/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-navy mb-2">Quality First</h4>
+          <p class="text-slate-500 text-sm">Every product and service meets rigorous international standards.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-slate-100 shadow-sm text-center">
+          <div class="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-navy mb-2">Global Reach</h4>
+          <p class="text-slate-500 text-sm">Exporting Pakistan's finest goods to markets across the world.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-slate-100 shadow-sm text-center">
+          <div class="w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-navy mb-2">Family Legacy</h4>
+          <p class="text-slate-500 text-sm">Rooted in trust, driven by a shared family commitment to success.</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-slate-100 shadow-sm text-center">
+          <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h4 class="font-bold text-navy mb-2">Diversified Growth</h4>
+          <p class="text-slate-500 text-sm">Strength through diversity — medical, trade, and sports all under one roof.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+  <section id="contact" class="py-24 hero-gradient">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: Info -->
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 block">Get in Touch</span>
+          <h2 class="text-4xl sm:text-5xl font-black text-white mb-6">Let's Work Together</h2>
+          <p class="text-slate-300 text-lg leading-relaxed mb-10">
+            Whether you're interested in our surgical instruments, export partnerships, or sports apparel, we'd love to hear from you. Reach out and let's explore what we can achieve together.
+          </p>
+
+          <div class="space-y-5">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400">Headquarters</div>
+                <div class="text-white font-medium">Sialkot, Punjab, Pakistan</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-xs text-slate-400">General Enquiries</div>
+                <div class="text-white font-medium">info@saygroup.pk</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8">
+          <h3 class="text-xl font-bold text-navy mb-6">Send us a Message</h3>
+          <form id="contact-form" class="space-y-5" novalidate>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label for="name" class="block text-xs font-semibold text-slate-600 mb-1.5">Full Name</label>
+                <input id="name" type="text" placeholder="John Smith" required
+                  class="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition"/>
+              </div>
+              <div>
+                <label for="email" class="block text-xs font-semibold text-slate-600 mb-1.5">Email Address</label>
+                <input id="email" type="email" placeholder="john@example.com" required
+                  class="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition"/>
+              </div>
+            </div>
+            <div>
+              <label for="company-interest" class="block text-xs font-semibold text-slate-600 mb-1.5">Interested In</label>
+              <select id="company-interest"
+                class="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition bg-white">
+                <option value="">Select a company…</option>
+                <option>The Surgicals — Surgical &amp; Dental</option>
+                <option>Yazma International — Import / Export</option>
+                <option>SMYZA International — Sports Apparel</option>
+                <option>General / SAY Group Enquiry</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-xs font-semibold text-slate-600 mb-1.5">Message</label>
+              <textarea id="message" rows="4" placeholder="Tell us about your enquiry…" required
+                class="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition resize-none"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full py-3 bg-navy text-white font-bold rounded-lg hover:bg-navy-light transition-colors text-sm shadow">
+              Send Message
+            </button>
+            <p id="form-success" class="hidden text-center text-emerald text-sm font-medium pt-1">
+              ✓ Thank you! We'll be in touch shortly.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="bg-navy-dark border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid md:grid-cols-3 gap-10">
+
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="22" r="22" fill="#1a3360"/>
+              <circle cx="10" cy="33" r="5" fill="#166534"/>
+              <text x="10" y="36.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">S</text>
+              <circle cx="22" cy="8" r="5" fill="#1a3360" stroke="#60a5fa" stroke-width="1.5"/>
+              <text x="22" y="11.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">A</text>
+              <circle cx="34" cy="33" r="5" fill="#ea580c"/>
+              <text x="34" y="36.5" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="700" fill="white">Y</text>
+              <line x1="10" y1="33" x2="22" y2="8" stroke="#94a3b8" stroke-width="1" opacity="0.4"/>
+              <line x1="22" y1="8" x2="34" y2="33" stroke="#94a3b8" stroke-width="1" opacity="0.4"/>
+              <line x1="10" y1="33" x2="34" y2="33" stroke="#94a3b8" stroke-width="1" opacity="0.4"/>
+            </svg>
+            <div>
+              <span class="text-lg font-black text-white">SAY</span>
+              <span class="text-lg font-light text-slate-400"> Group</span>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+            A unified family of companies delivering excellence in medical manufacturing, global trade, and sports apparel.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#home"      class="text-slate-400 hover:text-white text-sm transition-colors">Home</a></li>
+            <li><a href="#about"     class="text-slate-400 hover:text-white text-sm transition-colors">About Us</a></li>
+            <li><a href="#companies" class="text-slate-400 hover:text-white text-sm transition-colors">Our Companies</a></li>
+            <li><a href="#contact"   class="text-slate-400 hover:text-white text-sm transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Companies -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Our Companies</h4>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-400 flex-shrink-0"></span>
+              <span class="text-slate-400 text-sm">The Surgicals</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-light flex-shrink-0"></span>
+              <span class="text-slate-400 text-sm">Yazma International</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-orange-light flex-shrink-0"></span>
+              <span class="text-slate-400 text-sm">SMYZA International</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="text-slate-500 text-xs">&copy; 2025 SAY Group of Companies. All rights reserved.</p>
+        <p class="text-slate-600 text-xs">Sialkot, Pakistan</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        mobileMenu.style.opacity = '1';
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+      } else {
+        mobileMenu.style.maxHeight = '0';
+        mobileMenu.style.opacity = '0';
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      }
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-link, #mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileMenu.style.maxHeight = '0';
+        mobileMenu.style.opacity = '0';
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
+    // Contact form demo handler
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('form-success').classList.remove('hidden');
+      this.reset();
+      setTimeout(() => document.getElementById('form-success').classList.add('hidden'), 5000);
+    });
+  </script>
+</body>
+</html>
